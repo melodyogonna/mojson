@@ -1,0 +1,39 @@
+{
+  "name": "Mojo",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "onCreateCommand": "magic init --format mojoproject",
+  "postStartCommand": "magic install",
+  "mounts": [
+    {
+      "type": "volume",
+      "source": "${localWorkspaceFolderBasename}-magic",
+      "target": "${containerWorkspaceFolder}/.magic"
+    },
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/.config/nvim",
+      "target": "/root/.config/nvim",
+      "consistency": "cached"
+    },
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/.local/share/nvim",
+      "target": "/root/.local/share/nvim",
+      "consistency": "cached"
+    },
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/.local/state/nvim",
+      "target": "/root/.local/state/nvim",
+      "consistency": "cached"
+    },
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/.cache/nvim",
+      "target": "/root/.cache/nvim",
+      "consistency": "cached"
+    }
+  ]
+}
